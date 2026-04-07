@@ -1,0 +1,50 @@
+{
+  "id": "t2_s02",
+  "task_description": "Fetch details for customer 'cust_9933' to get their billing info, then create a payment of 49.00 USD for them.",
+  "api_docs": {
+    "base_url": "http://127.0.0.1:7861/v1",
+    "auth": {
+      "type": "Bearer",
+      "token": "sk-bench-4921x"
+    },
+    "endpoints": [
+      {
+        "method": "GET",
+        "path": "/customers/{customer_id}",
+        "description": "Retrieve customer details"
+      },
+      {
+        "method": "POST",
+        "path": "/payments",
+        "description": "Create a new payment",
+        "body_required": {
+          "customer_id": "string",
+          "amount": "number",
+          "currency": "string"
+        }
+      }
+    ]
+  },
+  "ground_truth": {
+    "expected_sequence": [
+      {
+        "step": 1,
+        "method": "GET",
+        "path_contains": "/customers/cust_9933",
+        "weight": 0.5
+      },
+      {
+        "step": 2,
+        "method": "POST",
+        "path_contains": "/payments",
+        "required_body": {
+          "customer_id": "cust_9933",
+          "amount": 49.0,
+          "currency": "USD"
+        },
+        "weight": 0.5
+      }
+    ],
+    "total_correct_score": 1.0
+  }
+}

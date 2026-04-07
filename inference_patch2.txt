@@ -1,0 +1,2 @@
+    # Reset environment
+    reset_resp = await env_client.post("/reset", json={"episode_id": task_id}, params={"task_id": task_id})

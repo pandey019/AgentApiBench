@@ -1,0 +1,14 @@
+[
+  {"id": "cust_4821", "name": "Acme Corp", "email": "billing@acme.com",
+   "status": "active", "created_at": "2024-01-15T10:00:00Z",
+   "subscription": {"plan": "pro", "status": "active", "mrr": 299},
+   "billing": {"method": "card", "last4": "4242"}},
+  {"id": "cust_9933", "name": "TechStart Inc", "email": "admin@techstart.io",
+   "status": "active", "created_at": "2024-03-01T09:00:00Z",
+   "subscription": {"plan": "starter", "status": "active", "mrr": 49},
+   "billing": {"method": "bank", "last4": "6789"}},
+  {"id": "cust_1155", "name": "GlobalOps Ltd", "email": "finance@globalops.com",
+   "status": "inactive", "created_at": "2023-11-20T14:00:00Z",
+   "subscription": {"plan": "enterprise", "status": "cancelled", "mrr": 0},
+   "billing": {"method": "card", "last4": "1234"}}
+]

@@ -1,0 +1,38 @@
+{
+  "id": "t1_s04",
+  "task_description": "Send an SMS payment reminder for invoice 'inv_004'.",
+  "api_docs": {
+    "base_url": "http://127.0.0.1:7861/v1",
+    "auth": {
+      "type": "Bearer",
+      "token": "sk-bench-4921x"
+    },
+    "endpoints": [
+      {
+        "method": "POST",
+        "path": "/invoices/{invoice_id}/remind",
+        "description": "Send a payment reminder for a specific invoice",
+        "path_params": {
+          "invoice_id": "string"
+        },
+        "body": {
+          "channel": "string (email, sms, push)"
+        }
+      }
+    ]
+  },
+  "ground_truth": {
+    "method": "POST",
+    "path": "/invoices/inv_004/remind",
+    "required_headers": {
+      "Authorization": "Bearer sk-bench-4921x"
+    },
+    "required_params": {},
+    "scoring": {
+      "correct_method": 0.25,
+      "correct_path": 0.25,
+      "correct_auth": 0.25,
+      "correct_params": 0.25
+    }
+  }
+}

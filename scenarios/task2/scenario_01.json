@@ -1,0 +1,61 @@
+{
+  "id": "t2_s01",
+  "task_description": "Find all UNPAID invoices for customer 'cust_4821', then send an email payment reminder for each unpaid invoice. Complete the full workflow.",
+  "api_docs": {
+    "base_url": "http://127.0.0.1:7861/v1",
+    "auth": {
+      "type": "Bearer",
+      "token": "sk-bench-4921x"
+    },
+    "endpoints": [
+      {
+        "method": "GET",
+        "path": "/invoices",
+        "description": "List invoices with optional filters",
+        "query_params": {
+          "customer_id": "string \u2014 filter by customer ID",
+          "status": "string \u2014 filter by status: paid, unpaid, overdue"
+        }
+      },
+      {
+        "method": "POST",
+        "path": "/invoices/{invoice_id}/remind",
+        "description": "Send a payment reminder for a specific invoice",
+        "path_params": {
+          "invoice_id": "string (required) \u2014 invoice ID from the list endpoint"
+        },
+        "body": {
+          "channel": "string (required) \u2014 notification channel: email, sms, push"
+        }
+      }
+    ]
+  },
+  "ground_truth": {
+    "expected_sequence": [
+      {
+        "step": 1,
+        "method": "GET",
+        "path_contains": "/invoices",
+        "required_params": {
+          "customer_id": "cust_4821",
+          "status": "unpaid"
+        },
+        "weight": 0.4
+      },
+      {
+        "step": 2,
+        "method": "POST",
+        "path_contains": "/remind",
+        "required_body": {
+          "channel": "email"
+        },
+        "repeat_for_each": [
+          "inv_001",
+          "inv_002"
+        ],
+        "weight_per_call": 0.3
+      }
+    ],
+    "total_correct_score": 1.0
+  }
+}

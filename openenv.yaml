@@ -1,0 +1,49 @@
+spec_version: 1
+
+name: agentapibench
+type: standard
+description: >
+  AgentAPIBench evaluates AI agents on real-world REST API integration tasks.
+  Agents read API documentation and make correct authenticated calls to complete
+  business workflows. Grading is fully deterministic based on HTTP responses
+  from the mock API server.
+
+runtime:
+  type: docker
+
+app:
+  module: server.app
+  attribute: app
+
+port: 7860
+
+tasks:
+  - id: task1
+    name: single-api-call
+    difficulty: easy
+    description: Make one correct authenticated API call based on documentation
+    max_steps: 3
+
+  - id: task2
+    name: multi-step-workflow
+    difficulty: medium
+    description: Chain 3-4 API calls where each depends on the previous response
+    max_steps: 6
+
+  - id: task3
+    name: debug-broken-client
+    difficulty: hard
+    description: Fix bugs in a broken API integration by reading error responses
+    max_steps: 8
+
+reward_range: [0.0, 1.0]
+supports_concurrent_sessions: false
+max_concurrent_envs: 1
+
+tags:
+  - api-integration
+  - tool-use
+  - function-calling
+  - enterprise
+  - real-world
+  - rest-api

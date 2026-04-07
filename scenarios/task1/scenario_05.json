@@ -1,0 +1,39 @@
+{
+  "id": "t1_s05",
+  "task_description": "List up to 5 active customers.",
+  "api_docs": {
+    "base_url": "http://127.0.0.1:7861/v1",
+    "auth": {
+      "type": "Bearer",
+      "token": "sk-bench-4921x"
+    },
+    "endpoints": [
+      {
+        "method": "GET",
+        "path": "/customers",
+        "description": "List customers",
+        "query_params": {
+          "status": "string (active, inactive)",
+          "limit": "integer"
+        }
+      }
+    ]
+  },
+  "ground_truth": {
+    "method": "GET",
+    "path": "/customers",
+    "required_headers": {
+      "Authorization": "Bearer sk-bench-4921x"
+    },
+    "required_params": {
+      "status": "active",
+      "limit": "5"
+    },
+    "scoring": {
+      "correct_method": 0.25,
+      "correct_path": 0.25,
+      "correct_auth": 0.25,
+      "correct_params": 0.25
+    }
+  }
+}

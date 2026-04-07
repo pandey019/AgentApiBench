@@ -1,0 +1,49 @@
+{
+  "id": "t1_s01",
+  "task_description": "Retrieve the full details of customer with ID 'cust_4821', including their subscription plan information.",
+  "api_docs": {
+    "base_url": "http://127.0.0.1:7861/v1",
+    "auth": {
+      "type": "Bearer",
+      "description": "Include token in Authorization header: 'Authorization: Bearer <token>'",
+      "token": "sk-bench-4921x"
+    },
+    "endpoints": [
+      {
+        "method": "GET",
+        "path": "/customers/{customer_id}",
+        "description": "Retrieve a customer record by their unique ID",
+        "path_params": {
+          "customer_id": "string (required) \u2014 the customer's unique identifier"
+        },
+        "query_params": {
+          "include": "string (optional) \u2014 comma-separated list of additional data to include. Options: subscription, billing"
+        },
+        "response": {
+          "id": "string",
+          "name": "string",
+          "email": "string",
+          "created_at": "ISO8601 datetime",
+          "subscription": "object (if requested) \u2014 plan, status, mrr",
+          "billing": "object (if requested) \u2014 method, last4"
+        }
+      }
+    ]
+  },
+  "ground_truth": {
+    "method": "GET",
+    "path": "/customers/cust_4821",
+    "required_headers": {
+      "Authorization": "Bearer sk-bench-4921x"
+    },
+    "required_params": {
+      "include": "subscription"
+    },
+    "scoring": {
+      "correct_method": 0.25,
+      "correct_path": 0.25,
+      "correct_auth": 0.25,
+      "correct_params": 0.25
+    }
+  }
+}

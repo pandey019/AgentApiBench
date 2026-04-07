@@ -1,0 +1,28 @@
+# Qmmit Ignore — files matching these patterns will not be tracked by the proxy.
+# Uses gitignore-compatible glob syntax.
+
+# Environment files
+.env*
+*.env
+
+# Private keys and certificates
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+
+# Secrets and credentials
+*secret*
+*.credentials
+*password*
+
+# AWS
+.aws/credentials
+
+# Docker secrets
+docker-compose*.secret*
+
+# IDE configs with potential tokens
+.vscode/settings.json
+.idea/

@@ -1,0 +1,44 @@
+{
+  "id": "t3_s04",
+  "task_description": "Make a successful POST to /payments. The endpoint requires: correct Bearer auth, POST method, and body with customer_id + amount + currency. Fix any errors you see in the responses.",
+  "api_docs": {
+    "base_url": "http://127.0.0.1:7861/v1",
+    "auth": {
+      "type": "Bearer",
+      "token": "sk-bench-4921x",
+      "description": "Header must be: Authorization: Bearer sk-bench-4921x"
+    },
+    "endpoints": [
+      {
+        "method": "POST",
+        "path": "/payments",
+        "description": "Create a payment record",
+        "required_body": {
+          "customer_id": "string",
+          "amount": "number",
+          "currency": "string \u2014 must be 3-letter ISO code: USD, EUR, GBP"
+        }
+      }
+    ]
+  },
+  "ground_truth": {
+    "target_path": "/payments",
+    "bugs": [
+      {
+        "id": "bug_auth",
+        "error_code": 401,
+        "weight": 0.3
+      },
+      {
+        "id": "bug_method",
+        "error_code": 405,
+        "weight": 0.3
+      },
+      {
+        "id": "bug_currency",
+        "error_code": 422,
+        "weight": 0.4
+      }
+    ]
+  }
+}

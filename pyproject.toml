@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "agentapibench"
+version = "1.0.0"
+requires-python = ">=3.11"
+dependencies = [
+    "openenv-core>=0.2.1",
+    "fastapi>=0.115.12",
+    "uvicorn[standard]>=0.29.0",
+    "httpx>=0.28.1",
+    "openai>=1.30.0",
+    "pydantic>=2.7.0",
+    "python-multipart>=0.0.9",
+    "python-dotenv>=1.1.0"
+]
+
+[project.scripts]
+server = "server.app:main"
+
+[tool.hatch.build.targets.wheel]
+packages = [
+    "models.py",
+    "server",
+    "mock_api",
+    "scenarios",
+    "inference.py"
+]

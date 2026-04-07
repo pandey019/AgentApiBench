@@ -1,0 +1,37 @@
+{
+  "id": "t1_s03",
+  "task_description": "Create a new payment record of $49.00 USD for customer 'cust_9933'.",
+  "api_docs": {
+    "base_url": "http://127.0.0.1:7861/v1",
+    "auth": {
+      "type": "Bearer",
+      "token": "sk-bench-4921x"
+    },
+    "endpoints": [
+      {
+        "method": "POST",
+        "path": "/payments",
+        "description": "Create a new payment record",
+        "body_required": {
+          "customer_id": "string",
+          "amount": "number",
+          "currency": "string (ISO 4217)"
+        }
+      }
+    ]
+  },
+  "ground_truth": {
+    "method": "POST",
+    "path": "/payments",
+    "required_headers": {
+      "Authorization": "Bearer sk-bench-4921x"
+    },
+    "required_params": {},
+    "scoring": {
+      "correct_method": 0.25,
+      "correct_path": 0.25,
+      "correct_auth": 0.25,
+      "correct_params": 0.25
+    }
+  }
+}

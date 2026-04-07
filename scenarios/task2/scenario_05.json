@@ -1,0 +1,44 @@
+{
+  "id": "t2_s05",
+  "task_description": "Get details of customer 'cust_1155', then retrieve their invoices if any.",
+  "api_docs": {
+    "base_url": "http://127.0.0.1:7861/v1",
+    "auth": {
+      "type": "Bearer",
+      "token": "sk-bench-4921x"
+    },
+    "endpoints": [
+      {
+        "method": "GET",
+        "path": "/customers/{customer_id}"
+      },
+      {
+        "method": "GET",
+        "path": "/invoices",
+        "query_params": {
+          "customer_id": "string"
+        }
+      }
+    ]
+  },
+  "ground_truth": {
+    "expected_sequence": [
+      {
+        "step": 1,
+        "method": "GET",
+        "path_contains": "/customers/cust_1155",
+        "weight": 0.5
+      },
+      {
+        "step": 2,
+        "method": "GET",
+        "path_contains": "/invoices",
+        "required_params": {
+          "customer_id": "cust_1155"
+        },
+        "weight": 0.5
+      }
+    ],
+    "total_correct_score": 1.0
+  }
+}

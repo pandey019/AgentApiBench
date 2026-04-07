@@ -1,0 +1,57 @@
+{
+  "id": "t2_s03",
+  "task_description": "Find the unpaid invoice for 'cust_9933', then send an SMS reminder for it.",
+  "api_docs": {
+    "base_url": "http://127.0.0.1:7861/v1",
+    "auth": {
+      "type": "Bearer",
+      "token": "sk-bench-4921x"
+    },
+    "endpoints": [
+      {
+        "method": "GET",
+        "path": "/invoices",
+        "description": "List invoices",
+        "query_params": {
+          "customer_id": "string",
+          "status": "string"
+        }
+      },
+      {
+        "method": "POST",
+        "path": "/invoices/{invoice_id}/remind",
+        "description": "Send a reminder",
+        "body": {
+          "channel": "string"
+        }
+      }
+    ]
+  },
+  "ground_truth": {
+    "expected_sequence": [
+      {
+        "step": 1,
+        "method": "GET",
+        "path_contains": "/invoices",
+        "required_params": {
+          "customer_id": "cust_9933",
+          "status": "unpaid"
+        },
+        "weight": 0.5
+      },
+      {
+        "step": 2,
+        "method": "POST",
+        "path_contains": "/remind",
+        "required_body": {
+          "channel": "sms"
+        },
+        "repeat_for_each": [
+          "inv_004"
+        ],
+        "weight_per_call": 0.5
+      }
+    ],
+    "total_correct_score": 1.0
+  }
+}

@@ -1,0 +1,3 @@
+        # Execute action in environment
+        # OpenEnv expects {"action": {...}} wrapping 
+        step_resp = await env_client.post("/step", json={"action": action_dict})

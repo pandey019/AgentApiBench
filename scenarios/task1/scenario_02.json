@@ -1,0 +1,39 @@
+{
+  "id": "t1_s02",
+  "task_description": "List all unpaid invoices for customer 'cust_9933'.",
+  "api_docs": {
+    "base_url": "http://127.0.0.1:7861/v1",
+    "auth": {
+      "type": "Bearer",
+      "token": "sk-bench-4921x"
+    },
+    "endpoints": [
+      {
+        "method": "GET",
+        "path": "/invoices",
+        "description": "List invoices with optional filters",
+        "query_params": {
+          "customer_id": "string \u2014 filter by customer ID",
+          "status": "string \u2014 filter by status: paid, unpaid, overdue"
+        }
+      }
+    ]
+  },
+  "ground_truth": {
+    "method": "GET",
+    "path": "/invoices",
+    "required_headers": {
+      "Authorization": "Bearer sk-bench-4921x"
+    },
+    "required_params": {
+      "customer_id": "cust_9933",
+      "status": "unpaid"
+    },
+    "scoring": {
+      "correct_method": 0.25,
+      "correct_path": 0.25,
+      "correct_auth": 0.25,
+      "correct_params": 0.25
+    }
+  }
+}
