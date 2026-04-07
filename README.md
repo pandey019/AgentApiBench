@@ -2,7 +2,7 @@
 title: AgentAPIBench
 emoji: 🔌
 colorFrom: indigo
-colorTo: purple      ← CHANGE TO THIS
+colorTo: indigo     
 sdk: docker
 pinned: true
 tags:
