@@ -11,14 +11,15 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
+COPY start.sh .
+RUN chmod +x start.sh
+
 ENV PYTHONPATH="/app:$PYTHONPATH"
 
 EXPOSE 7860
+EXPOSE 7861
 
 HEALTHCHECK --interval=30s --timeout=10s --start-period=15s --retries=3 \
     CMD curl -f http://localhost:7860/health || exit 1
 
-CMD ["sh", "-c", \
-    "uvicorn mock_api.server:app --host 0.0.0.0 --port 7861 & \
-     sleep 2 && \
-     uvicorn server.app:app --host 0.0.0.0 --port 7860"]
+CMD ["./start.sh"]
