@@ -83,4 +83,6 @@ def grade(call_log: List[Dict[str, Any]], ground_truth: Dict[str, Any]) -> float
 
             score += per_call_weight * len(completed_ids)
 
-    return round(min(1.0, max(0.0, score)), 4)
+    score = round(min(1.0, max(0.0, score)), 4)
+    score = min(0.95, max(0.05, score))
+    return score

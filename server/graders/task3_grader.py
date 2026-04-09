@@ -70,4 +70,6 @@ def grade(call_log: List[Dict[str, Any]], ground_truth: Dict[str, Any]) -> float
     if any(s == 200 for s in statuses):
         score = min(1.0, score * 1.05)  # 5% bonus
 
-    return round(min(1.0, max(0.0, score)), 4)
+    score = round(min(1.0, max(0.0, score)), 4)
+    score = min(0.95, max(0.05, score))
+    return score
